@@ -12,11 +12,11 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req: NextRequest) {
   try {
     const { message, history } = await req.json();
-
+    console.log("GROQ KEY:", process.env.GROQ_API_KEY);
     if (!process.env.GROQ_API_KEY) {
       return NextResponse.json({ reply: "API key not configured." }, { status: 500 });
     }
-
+/*
     const menuContext = `
 Restaurant: Ember & Salt, New York.
 Hours: Tue-Sun 6PM-11PM. Closed Mondays.
@@ -29,6 +29,23 @@ Desserts: Dark Caramel Orb $24
 
 Booking times: 6:00PM, 6:30PM, 7:00PM, 7:30PM, 8:00PM, 8:30PM, 9:00PM
 `;
+*/
+    const menuContext = `
+Restaurant: Kaah Restaurant, 912 E 24th St d2, Minneapolis, MN 55404, United States.
+Located: Village market.
+Closes: 10:00 PM.
+Hours: Tue-Sun 6PM-11PM. Closed Mondays.
+Phone: +1 (212) 555-0147
+
+MENU:
+Starters: Ember-Smoked Burrata — $26, Saffron Citrus Cured Salmon — $32, Charred Garden Medley — $24
+Mains: Coal-Roasted Lamb Ribs — $78, Himalayan Salt Crusted Sea Bass — $72, Flame-Seared Wagyu Striploin — $135, Truffle Butter Chicken (Modern Classic) — $58
+Desserts: Molten Date & Caramel Sphere — $22, Pistachio Saffron Silk — $20, Smoked Vanilla Bean Cream — $18
+
+Booking times: 5:30PM, 6:00PM, 6:30PM, 7:00PM, 7:30PM, 8:00PM, 8:30PM, 9:00PM, 9:30PM
+`;
+
+
 
     const conversationMessages = (history || []).map((m: { role: string; text: string }) => ({
       role: m.role === "user" ? "user" : "assistant",

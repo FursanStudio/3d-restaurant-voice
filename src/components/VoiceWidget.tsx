@@ -40,7 +40,7 @@ export default function VoiceWidget() {
   const [inputText, setInputText] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "ai", text: "Hello! Welcome to Ember & Salt. You can type or speak to me. How can I help you?" }
+    { role: "ai", text: "Hello! Welcome to Kaah. You can type or speak to me. How can I help you?" }
   ]);
   const [error, setError] = useState("");
   const recognitionRef = useRef<SpeechRecognition | null>(null);
