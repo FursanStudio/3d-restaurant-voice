@@ -2,9 +2,9 @@
 
 import { useFadeIn } from "@/app/hooks/useFadeIn";
 export default function About() {
-
-  const { imgRef, isImgVisible } = useFadeIn();
-  const { textRef, isTextVisible } = useFadeIn();
+  
+const { ref: imgRef, isVisible: isImgVisible } = useFadeIn();
+const { ref: textRef, isVisible: isTextVisible } = useFadeIn();
 
   return (
     <section className="section" id="about">
