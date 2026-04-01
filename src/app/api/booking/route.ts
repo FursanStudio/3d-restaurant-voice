@@ -18,10 +18,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
+    const guestsNumber = parseInt(guests); // extracts 2 from "2 Guests"
+
+
     // Save to Supabase
     const { error: dbError } = await supabase
       .from("bookings")
-      .insert([{ name, phone, date, time, guests, notes }]);
+      .insert([{ name, phone, date, time, guests:guestsNumber, notes }]);
 
     if (dbError) {
       console.error("Supabase error:", dbError);
